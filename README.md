@@ -27,10 +27,10 @@ when each part is built.
 
 | Part                      | File                 | Written by |
 |---------------------------|----------------------|------------|
-| Array list of places      | src/PlaceList.java   | Name 1     |
-| Sort (A to Z)             | (Week 3)             | Name 1     |
-| Queue                     | src/IntQueue.java    | Name 2     |
-| BFS                       | (Week 3)             | Name 2     |
+| Array list of places      | src/PlaceList.java   | Ramin      |
+| Sort (A to Z)             | (Week 3)             | Ramin      |
+| Queue                     | src/IntQueue.java    | Valencia   |
+| BFS                       | (Week 3)             | Valencia   |
 | Graph                     | (Week 2)             | Neri       |
 | Map file reader           | (Week 2)             | Neri       |
 | Menu and error messages   | (Week 3)             | All        |
