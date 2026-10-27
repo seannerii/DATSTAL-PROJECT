@@ -1,7 +1,6 @@
 # Meeting Notes
 
-Rule: we meet at least once every week and write down what we decided.
-Add a new section for each meeting, then commit this file.
+Rule: we meet or message each other once in a while every week via Messenger and write down what we decided.
 
 ## Week 1 - Meeting 1
 
