@@ -80,7 +80,7 @@ message.
 ## Who wrote each part
 
 | Part                              | File                    | Written by |
-____________________________________________________________________________
+|-----------------------------------|-------------------------|------------|
 | Array list of places              | src/PlaceList.java      | Ramin      |
 | Linear search                     | src/PlaceList.java      | Ramin      |
 | Sort (A to Z)                     | src/Sorter.java         | Ramin      |
