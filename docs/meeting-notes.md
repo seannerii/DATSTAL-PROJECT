@@ -26,13 +26,30 @@ Rule: we meet or message each other once in a while every week via Messenger and
 
 ## Week 2 - Meeting 1
 
-- Date:
-- Who came:
+- Date: 11/7/2026
 - What we decided:
-  -
+  - We made map.txt from the DLSU campus map. Each building is a
+    place, and a road is two buildings that are next to each other.
+  - Retreat, Preschool, Kanlungan and Carpentry are across the
+    streets, so they only connect to each other. We use them to show
+    the "no path" message.
+  - Place names have no spaces (for example HenrySy), because each
+    line of the map file is two names with a space between them.
+  - For now, "number of stops" means the roads we walk, so
+    Library -> Cafeteria -> Gym is 2 stops. We will change it if the
+    instructor says something different.
+  - Each of us edits only our own files.
+- What we finished in Week 2:
+  - Graph.java and MapLoader.java: reads map.txt and builds the
+    graph (Neri).
+  - map.txt: 25 places and 29 roads, made from the DLSU campus map.
+  - Sorter.java and ShowPlaces.java, with tests (Ramin).
+  - PathFinder.java (BFS and printing the path), with tests (Valencia).
+  - DlsuMapFinder loads map.txt and prints the graph.
+
 - Who does what before the next meeting:
-  - Name 1:
-  - Name 2:
-  - Name 3:
+  - Neri: the menu, main, and the error messages.
+  - Ramin and Valencia: start your report paragraphs.
+  - All: Peer Evaluation 1 (end of Week 2).
 - Problems or questions for the instructor:
-  -
+  
