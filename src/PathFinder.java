@@ -48,3 +48,59 @@ public class PathFinder {
                     cameFrom[n.place] = current;
                     queue.enqueue(n.place);
                 }
+            }
+        }
+
+        if (!visited[goal]) {
+            return null;
+        }
+        return buildPath(cameFrom, start, goal);
+    }
+
+    /*
+     * Find the shortest path and print it, or print that there is no
+     * path. Example:
+     *   Path: Library -> Cafeteria -> Gym
+     *   Number of stops: 2
+     */
+    public static void showPath(PlaceList places, Graph graph,
+                                int start, int goal) {
+        int[] path = findPath(graph, start, goal);
+        if (path == null) {
+            System.out.println("There is no path between "
+                    + places.get(start) + " and " + places.get(goal) + ".");
+            return;
+        }
+
+        System.out.print("Path: ");
+        for (int i = 0; i < path.length; i++) {
+            System.out.print(places.get(path[i]));
+            if (i < path.length - 1) {
+                System.out.print(" -> ");
+            }
+        }
+        System.out.println();
+
+        // A stop is one road we walk. Library -> Cafeteria -> Gym is
+        // 2 stops. The start place is not counted.
+        int stops = path.length - 1;
+        System.out.println("Number of stops: " + stops);
+    }
+
+    // Walk back from the goal to the start using cameFrom, and put the
+    // places in a new array in the right order (start first).
+    private static int[] buildPath(int[] cameFrom, int start, int goal) {
+        int length = 1;
+        for (int p = goal; p != start; p = cameFrom[p]) {
+            length++;
+        }
+
+        int[] path = new int[length];
+        int place = goal;
+        for (int i = length - 1; i >= 0; i--) {
+            path[i] = place;
+            place = cameFrom[place];
+        }
+        return path;
+    }
+}
