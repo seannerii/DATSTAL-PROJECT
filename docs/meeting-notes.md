@@ -53,3 +53,19 @@ Rule: we meet or message each other once in a while every week via Messenger and
   - All: Peer Evaluation 1 (end of Week 2).
 - Problems or questions for the instructor:
   none
+- 
+## Week 3 - Meeting 1
+
+- Date: 11/10/26
+- What we finished in Week 3:
+  - The menu with 4 choices works: load the map, show places A to Z,
+    find a path, quit (Neri).
+  - Error messages: file not found, wrong place name, no path.
+  - Menu tests (MenuTest) and test notes in docs/menu-test-*.mf
+- Who does what before the next meeting:
+  - Ramin:What the program does; what each data
+    structure does. 
+  - Valencia: How BFS works.
+  - Neri: Problems and fixes; final README check.
+  - All: test with different places, practice the demo,
+    Peer Evaluation 2.
