@@ -169,4 +169,77 @@ public class PathFinderTest {
                 for (int j = 0; j < n; j++) {
                     if (dist[i][k] + dist[k][j] < dist[i][j]) {
                         dist[i][j] = dist[i][k] + dist[k][j];
+                    }}
+            }
+        }
+
+        boolean allOk = true;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                int[] path = PathFinder.findPath(graph, i, j);
+                if (dist[i][j] >= far) {
+                    if (path != null) {
+                        allOk = false;
                     }
+                } else if (path == null
+                        || path.length - 1 != dist[i][j]
+                        || path[0] != i
+                        || path[path.length - 1] != j
+                        || !hasAllRoads(graph, path)) {
+                    allOk = false;
+                }
+            }
+        }
+        check(label, allOk);
+    }
+
+    // True if there is a road between every two places next to each
+    // other on the path.
+    private static boolean hasAllRoads(Graph graph, int[] path) {
+        for (int i = 0; i + 1 < path.length; i++) {
+            if (!graph.hasRoad(path[i], path[i + 1])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Make a graph with some places and roads. Each road is {a, b}.
+    private static Graph makeGraph(int placeCount, int[][] roads) {
+        Graph graph = new Graph();
+        for (int i = 0; i < placeCount; i++) {
+            graph.addPlace();
+        }
+        for (int i = 0; i < roads.length; i++) {
+            graph.addRoad(roads[i][0], roads[i][1]);
+        }
+        return graph;
+    }
+
+    // Run PathFinder.showPath and return the text it printed.
+    private static String capture(PlaceList places, Graph graph,
+                                  int start, int goal) {
+        PrintStream original = System.out;
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(buffer));
+        try {
+            PathFinder.showPath(places, graph, start, goal);
+        } finally {
+            System.setOut(original);
+        }
+        return buffer.toString();
+    }
+
+    // True if the path has exactly these place numbers, in this order.
+    private static boolean same(int[] path, int... expected) {
+        if (path == null || path.length != expected.length) {
+            return false;
+        }
+        for (int i = 0; i < path.length; i++) {
+            if (path[i] != expected[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
