@@ -52,4 +52,4 @@ Rule: we meet or message each other once in a while every week via Messenger and
   - Ramin and Valencia: start your report paragraphs.
   - All: Peer Evaluation 1 (end of Week 2).
 - Problems or questions for the instructor:
-  
+  none
