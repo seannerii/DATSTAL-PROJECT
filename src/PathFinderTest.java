@@ -83,3 +83,90 @@ public class PathFinderTest {
             big.addRoad(i, i + 1);
         }
         int[] longPath = PathFinder.findPath(big, 0, 29);
+        check("a chain of 30 places has a path of 30 places",
+                longPath != null && longPath.length == 30);
+    }
+
+    private static void testShowPath() {
+        PlaceList places = new PlaceList();
+        places.add("Library");   // 0
+        places.add("Cafeteria"); // 1
+        places.add("Gym");       // 2
+        places.add("Pool");      // 3
+        places.add("Court");     // 4
+        Graph graph = makeGraph(5, new int[][]{{0, 1}, {1, 2}, {3, 4}});
+
+        String text = capture(places, graph, 0, 2);
+        check("it prints the path with arrows",
+                text.contains("Path: Library -> Cafeteria -> Gym"));
+        check("it prints the number of stops",
+                text.contains("Number of stops: 2"));
+
+        text = capture(places, graph, 0, 1);
+        check("1 road is 1 stop", text.contains("Number of stops: 1"));
+
+        text = capture(places, graph, 1, 1);
+        check("the same place is 0 stops",
+                text.contains("Path: Cafeteria")
+                        && text.contains("Number of stops: 0"));
+
+        text = capture(places, graph, 0, 3);
+        check("it prints a message when there is no path",
+                text.contains("There is no path between Library and Pool."));
+        check("it does not print a path when there is none",
+                !text.contains("Path:"));
+    }
+
+    // For every pair of places, compare BFS with a second method
+    // (Floyd-Warshall) that finds all shortest distances.
+    private static void testAllPairs() {
+        Graph graph = makeGraph(12, new int[][]{
+                {0, 1}, {1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 0},
+                {1, 6}, {6, 7}, {7, 3}, {2, 8}, {8, 9}, {9, 10},
+                {0, 10}});
+        // Place 11 has no roads on purpose.
+        compareWithFloyd(graph, "12 places: every pair is a shortest path");
+    }
+
+    // Check our real map file. Run the tests from the project folder.
+    private static void testMapFile() {
+        if (!new File("map.txt").exists()) {
+            System.out.println("SKIP  map.txt not found here"
+                    + " (run the tests from the project folder)");
+            return;
+        }
+        PlaceList places = new PlaceList();
+        Graph graph = new Graph();
+        PrintStream original = System.out;
+        System.setOut(new PrintStream(new ByteArrayOutputStream()));
+        boolean loaded;
+        try {
+            loaded = MapLoader.load("map.txt", places, graph);
+        } finally {
+            System.setOut(original);
+        }
+        check("map.txt loads", loaded);
+        compareWithFloyd(graph, "map.txt: every pair is a shortest path");
+    }
+
+    private static void compareWithFloyd(Graph graph, String label) {
+        int n = graph.placeCount();
+        int far = 1000000;
+        int[][] dist = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == j) {
+                    dist[i][j] = 0;
+                } else if (graph.hasRoad(i, j)) {
+                    dist[i][j] = 1;
+                } else {
+                    dist[i][j] = far;
+                }
+            }
+        }
+        for (int k = 0; k < n; k++) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (dist[i][k] + dist[k][j] < dist[i][j]) {
+                        dist[i][j] = dist[i][k] + dist[k][j];
+                    }
