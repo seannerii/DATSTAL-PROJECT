@@ -1,11 +1,3 @@
-/*
- * PlaceList.java
- * DLSU Campus Map Finder - term project
- *
- * A growable array that stores the names of the places.
- * The position of a name in this list is also its place number.
- * The graph (Week 2) uses these numbers, so a name never moves.
- */
 public class PlaceList {
 
     private String[] names; // holds the place names

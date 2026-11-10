@@ -1,12 +1,3 @@
-/*
- * IntQueue.java
- * DLSU Campus Map Finder - term project
- *
- * A queue of int numbers, written by hand. First in, first out.
- * It is a circular array: when the end of the array is reached,
- * new numbers go back to the start (index 0) if there is room.
- * BFS (Week 3) uses this queue to hold place numbers.
- */
 public class IntQueue {
 
     private int[] items; // holds the numbers

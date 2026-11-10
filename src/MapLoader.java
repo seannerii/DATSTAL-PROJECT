@@ -1,13 +1,3 @@
-/*
- * MapLoader.java
- * DLSU Campus Map Finder - term project
- *
- * Reads the map text file. Each line has two place names, like this:
- *     Library Cafeteria
- * It means there is a road between them (both ways).
- * Place names have no spaces. Blank lines and lines that start with #
- * are ignored. Other bad lines are skipped, with a warning.
- */
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
