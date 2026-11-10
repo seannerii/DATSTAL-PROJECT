@@ -17,13 +17,42 @@ To run our tests (every line should say PASS):
     java -cp out Tests
     java -cp out SorterTest
     java -cp out PathFinderTest
+    java -cp out MenuTest
 
 Run everything from the project folder, so the program can find
 `map.txt`. In IntelliJ IDEA: open the folder, then right-click
 `DlsuMapFinder` and choose Run.
 
-Status (Week 2): the program loads `map.txt` and prints the graph.
-The sort and BFS are written and tested. The menu comes in Week 3.
+## How to use the program
+
+The program shows a menu and keeps asking until you choose 4.
+
+    ==== DLSU Campus Map Finder ====
+    1. Load the map file
+    2. Show all places (A to Z)
+    3. Find a path between 2 places
+    4. Quit
+
+1. **Load the map file.** Type the file name, or press Enter to use
+   `map.txt`. If the file is missing, the program says so and keeps the
+   old map (if there is one).
+2. **Show all places (A to Z).** Prints every place name in A to Z
+   order.
+3. **Find a path.** Type a start place and a destination place. Upper
+   and lower case do not matter. The program prints the path with the
+   fewest stops and the number of stops:
+
+        Start place: Gokongwei
+        Destination place: Faculty
+        Path: Gokongwei -> Hermitage -> EcoCar -> StMiguel -> BrBloemen
+        -> StJoseph -> Faculty
+        Number of stops: 6
+
+   (The real program prints the path on one line.) A stop is one road we
+   walk, so the start place is not counted. If a place name is wrong, or
+   there is no path, the program prints a message and goes back to the
+   menu.
+4. **Quit.**
 
 ## The map file
 
@@ -90,15 +119,16 @@ message.
 | Print the path or "no path"       | src/PathFinder.java     | Valencia   |
 | Graph                             | src/Graph.java          | Neri       |
 | Map file reader                   | src/MapLoader.java      | Neri       |
-| Main program, menu, error messages| src/DlsuMapFinder.java  | Neri (menu in Week 3) |
+| Main program, menu, error messages| src/DlsuMapFinder.java  | Neri       |
 | Map file                          | map.txt                 | All        |
 | Tests: lists, queue, graph, loader| src/Tests.java          | Neri       |
 | Tests: sort and show places       | src/SorterTest.java     | Ramin      |
 | Tests: BFS                        | src/PathFinderTest.java | Valencia   |
+| Tests: menu                       | src/MenuTest.java       | Neri       |
 
 ## Help sources
 
 - Youtube
 - DLSU campus map (picture of the De La Salle University campus map):
   building names and which buildings are next to each other.
-- Datstal ppts
+- DATSTAL ppts
