@@ -1,3 +1,13 @@
+/*
+ * MapLoader.java
+ * DLSU Campus Map Finder - term project
+ *
+ * Reads the map text file. Each line has two place names, like this:
+ *     Library Cafeteria
+ * It means there is a road between them (both ways).
+ * Place names have no spaces. Blank lines and lines that start with #
+ * are ignored. Other bad lines are skipped, with a warning.
+ */
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,6 +18,12 @@ import java.nio.charset.StandardCharsets;
 
 public class MapLoader {
 
+    /*
+     * Load the map file. Give it an EMPTY PlaceList and an EMPTY Graph.
+     * Returns true if the map was loaded.
+     * Returns false and prints a message if it could not be loaded.
+     * After false, do not use the place list and graph (make new ones).
+     */
     public static boolean load(String fileName, PlaceList places,
                                Graph graph) {
         if (places.size() != 0 || graph.placeCount() != 0) {
